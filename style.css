@@ -1,0 +1,371 @@
+/* Stiluri globale pentru body și html */
+body,
+html {
+  margin: 0; /* Elimină marginile implicite */
+  padding: 0; /* Elimină padding-ul implicit */
+  height: 100%; /* Setează înălțimea la 100% din viewport */
+  font-family: "Arial", sans-serif; /* Setează fontul implicit */
+  position: relative; /* Necesare pentru elementele poziționate absolut/fix în interior */
+  overflow-x: hidden; /* Previne scrollbar-ul orizontal inutil */
+}
+
+/* Container pentru imaginea de fundal și overlay */
+#background-overlay {
+  position: fixed; /* Poziționează elementul relativ la viewport */
+  top: 0; /* Aliniază la partea de sus */
+  left: 0; /* Aliniază la partea stângă */
+  width: 100%; /* Lățimea completă a viewport-ului */
+  height: 100%; /* Înălțimea completă a viewport-ului */
+  background-image: url("poze/poza.jpg"); /* Setează imaginea de fundal - ÎNLOCUIȚI ACEASTA! */
+  background-size: cover; /* Asigură acoperirea întregului spațiu, păstrând proporțiile */
+  background-position: center; /* Centrează imaginea de fundal */
+  background-attachment: fixed; /* Imaginea de fundal rămâne fixă la scroll */
+  z-index: -2; /* Trimite în spatele întregului conținut */
+}
+
+/* Un overlay semi-transparent peste imaginea de fundal pentru lizibilitate mai bună a textului */
+#background-overlay::before {
+  content: ""; /* Necesar pentru pseudo-elemente */
+  position: absolute; /* Poziționează relativ la #background-overlay */
+  top: 0; /* Acoperă complet părintele */
+  left: 0; /* Acoperă complet părintele */
+  right: 0; /* Acoperă complet părintele */
+  bottom: 0; /* Acoperă complet părintele */
+  background-color: rgba(0, 0, 0, 0.3); /* Culoare neagră cu opacitate 30% */
+  z-index: -1; /* Se plasează între imaginea de fundal și conținut */
+}
+
+/* Containerul principal al aplicației */
+#app-container {
+  position: relative; /* Permite suprapunerea corectă a conținutului peste fundal */
+  z-index: 1; /* Asigură că este deasupra #background-overlay */
+  min-height: 100vh; /* Ocupă cel puțin întreaga înălțime a viewport-ului */
+  display: flex; /* Utilizează flexbox pentru aliniere */
+  flex-direction: column; /* Aranjează elementele copil pe verticală */
+}
+
+/* Stil pentru titlul principal (H1) */
+.main-title {
+  text-align: center; /* Centrează textul */
+  color: white; /* Culoarea textului albă */
+  margin-top: 20px; /* Spațiu deasupra titlului */
+  margin-bottom: 10px; /* Spațiu sub titlu */
+  font-size: 3.5rem; /* Mărimea fontului */
+  font-weight: bold; /* Text îngroșat */
+  text-shadow: 2px 2px 4px rgba(227, 248, 2, 0.7); /* Umbră pentru text pentru lizibilitate */
+}
+
+/* Stil pentru bara de navigare */
+.main-nav {
+  background-color: rgba(
+    0,
+    0,
+    0,
+    0.5
+  ); /* Fundal semi-transparent pentru navigație */
+  padding: 10px 0; /* Padding vertical */
+  margin-bottom: 20px; /* Spațiu sub navigație */
+  border-radius: 5px; /* Colțuri rotunjite */
+}
+
+/* Stil pentru linkurile de navigare */
+.main-nav .nav-link {
+  color: white; /* Culoarea textului linkurilor */
+  font-weight: bold; /* Text îngroșat */
+  margin: 0 10px; /* Spațiu orizontal între linkuri */
+  transition: color 0.3s ease; /* Tranziție lină pentru schimbarea culorii */
+}
+
+/* Stil pentru linkurile de navigare la hover și active */
+.main-nav .nav-link:hover,
+.main-nav .nav-link.active {
+  color: #ffc107; /* Culoare galbenă (Bootstrap warning color) la hover/activ */
+  text-decoration: underline; /* Subliniere la hover/activ */
+}
+
+/* Container pentru conținutul specific fiecărei pagini */
+#page-content {
+  flex-grow: 1; /* Permite containerului să ocupe spațiul vertical disponibil */
+  padding: 20px; /* Padding interior */
+  display: flex; /* Utilizează flexbox */
+  flex-direction: column; /* Aranjează elementele pe verticală */
+  align-items: center; /* Centrează elementele pe orizontală */
+  /* justify-content: center; */ /* Comentat pentru a permite conținutului să înceapă de sus */
+  width: 100%; /* Lățime completă */
+  justify-content: center;
+}
+
+/* Stil pentru secțiunea de descriere de pe pagina Home */
+.home-description-section {
+  background-color: rgba(255, 255, 255, 0.1); /* Fundal ușor transparent alb */
+  color: white; /* Culoare text albă */
+  padding: 30px; /* Padding interior */
+  border-radius: 10px; /* Colțuri rotunjite */
+  text-align: center; /* Text centrat */
+  max-width: 1700px; /* Lățime maximă pentru containerul de descriere */
+  margin-top: 5vh; /* Spațiu deasupra */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Umbră subtilă */
+}
+
+.home-description-section h2 {
+  font-size: 1.8rem; /* Mărimea fontului pentru placeholder */
+  font-style: italic; /* Text italic */
+  margin-bottom: 20px; /* Spațiu sub titlu */
+  color: #cbc9c9; /* Culoare text deschisă pentru contrast pe fundal închis */
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); /* Umbră pentru lizibilitate */
+  font-weight: bold; /* Text îngroșat */
+  text-align: center; /* Centrează titlul */
+}
+
+/* Stiluri pentru pagina Galerie */
+.gallery-section {
+  width: 100%; /* Lățime completă */
+  max-width: 1200px; /* Lățime maximă pentru galerie */
+  margin: auto; /* Centrează secțiunea galeriei */
+  background-color: rgba(
+    255,
+    255,
+    255,
+    0.9
+  ); /* Fundal alb aproape opac pentru galerie */
+  padding: 20px; /* Padding interior */
+  border-radius: 10px; /* Colțuri rotunjite */
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2); /* Umbră pentru containerul galeriei */
+}
+
+.gallery-section h2 {
+  text-align: center; /* Centrează titlurile secțiunilor (Poze, Video) */
+  margin-bottom: 20px; /* Spațiu sub titluri */
+  color: #333; /* Culoare text închisă pentru contrast pe fundal alb */
+}
+
+/* Container pentru rândurile de imagini/video-uri din galerie */
+.gallery-row {
+  display: flex; /* Utilizează flexbox pentru aranjare orizontală */
+  flex-wrap: wrap; /* Permite elementelor să treacă pe rândul următor dacă nu încap */
+  justify-content: center; /* Centrează elementele pe orizontală */
+  gap: 15px; /* Spațiu între elementele galeriei */
+}
+
+/* Stil pentru fiecare element (imagine/video) din galerie */
+.gallery-item {
+  background-color: #f0f0f0; /* Fundal gri deschis pentru placeholder */
+  border: 1px solid #ccc; /* Bordură gri */
+  border-radius: 5px; /* Colțuri rotunjite */
+  padding: 10px; /* Padding interior */
+  text-align: center; /* Text centrat */
+  color: #555; /* Culoare text gri închis */
+  width: 200px; /* Lățime fixă pentru elementele de imagine (ajustați după nevoie) */
+  height: 160px; /* Înălțime fixă pentru elementele de imagine (ajustați după nevoie) */
+  display: flex; /* Flexbox pentru aliniere verticală */
+  align-items: center; /* Centrează conținutul pe verticală */
+  justify-content: center; /* Centrează conținutul pe orizontală */
+  font-size: 0.9rem; /* Mărimea fontului pentru placeholder */
+}
+
+.video-item {
+  width: 200px; /* Lățime mai mare pentru video-uri (ajustați după nevoie) */
+  height: 180px; /* Înălțime mai mare pentru video-uri (ajustați după nevoie) */
+  border: 1px solid #ccc; /* Bordură gri */
+  border-radius: 5px; /* Colțuri rotunjite */
+  cursor: pointer; /* Cursor pointer pentru a indica interactivitate */
+  display: flex; /* Flexbox pentru aliniere verticală */
+  align-items: center; /* Centrează conținutul pe verticală */
+  justify-content: center; /* Centrează conținutul pe orizontală */
+}
+.video-item video {
+  width: 100%; /* Lățimea completă a containerului */
+  height: 100%; /* Înălțimea completă a containerului */
+  border-radius: 5px; /* Colțuri rotunjite pentru video */
+}
+
+/* Stiluri pentru pagina de Contact și Rezervări */
+.contact-booking-section {
+  display: flex; /* Utilizează flexbox */
+  flex-direction: column; /* Aranjează formularele pe verticală pe ecrane mici */
+  align-items: flex-start; /* Aliniază la stânga pe ecrane mari */
+  gap: 30px; /* Spațiu între formulare */
+  width: 100%; /* Lățime completă */
+  max-width: 900px; /* Lățime maximă pentru secțiune */
+  margin-top: 5vh; /* Spațiu deasupra */
+}
+
+/* Stil pentru fiecare formular individual (Contact, Rezervare) */
+.form-container {
+  background-color: rgba(
+    255,
+    255,
+    255,
+    0.85
+  ); /* Fundal alb semi-transparent pentru formulare */
+  padding: 25px; /* Padding interior */
+  border-radius: 10px; /* Colțuri rotunjite */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Umbră pentru formulare */
+  width: 100%; /* Ocupă lățimea containerului părinte (contact-booking-section sau coloană Bootstrap) */
+}
+
+/* Stil pentru titlurile formularelor */
+.form-container h3 {
+  margin-bottom: 20px; /* Spațiu sub titlu */
+  color: #160101; /* Culoare text închisă */
+  text-align: center; /* Text centrat */
+}
+
+/* Stil pentru etichetele formularelor */
+.form-container .form-label {
+  color: #333; /* Culoare text închisă pentru etichete */
+  font-weight: bold; /* Text îngroșat */
+}
+
+/* Stil pentru input-urile formularelor */
+.form-container .form-control,
+.form-container .form-select {
+  margin-bottom: 15px; /* Spațiu sub fiecare input/select */
+}
+
+/* Stil pentru butoanele din formulare */
+.form-container .btn-primary {
+  background-color: #007bff; /* Culoare albastră Bootstrap primară */
+  border-color: #007bff; /* Culoare bordură */
+  width: 100%; /* Lățime completă pentru buton */
+  border-radius: 25px; /* Colțuri rotunjite */
+}
+.form-container .btn-primary:hover {
+  background-color: #014083; /* Culoare mai închisă la hover */
+  border-color: ##014083; /* Culoare bordură la hover */
+}
+
+/* Media query pentru ecrane mai mari (desktop) pentru pagina de contact */
+@media (min-width: 768px) {
+  /* Se aplică pentru ecrane cu lățimea de minim 768px */
+  .contact-booking-section {
+    flex-direction: row; /* Aranjează formularele pe orizontală */
+    justify-content: space-around; /* Distribuie spațiul între formulare */
+    align-items: flex-start; /* Aliniază elementele la începutul axei transversale */
+  }
+
+  .form-container {
+    width: 48%; /* Setează lățimea fiecărui formular la aprox. jumătate, permițând spațiu între ele */
+  }
+}
+
+/* Media query pentru responsivitate generală */
+@media (max-width: 767px) {
+  /* Se aplică pentru ecrane cu lățimea de maxim 767px (tablete mici, mobile) */
+  .main-title {
+    font-size: 2rem; /* Reduce mărimea fontului titlului principal */
+  }
+
+  .main-nav .nav {
+    flex-direction: column; /* Aranjează linkurile de navigare pe verticală */
+    align-items: center; /* Centrează linkurile */
+  }
+  .main-nav .nav-link {
+    margin: 5px 0; /* Spațiu vertical între linkuri */
+  }
+
+  .home-description-section {
+    padding: 20px; /* Reduce padding-ul */
+    margin-left: 10px; /* Adaugă margini laterale mici */
+    margin-right: 10px; /* Adaugă margini laterale mici */
+  }
+
+  .home-description-section h2 {
+    font-size: 1.5rem; /* Reduce mărimea fontului pentru placeholder */
+  }
+
+  .gallery-item {
+    width: calc(50% - 10px); /* Două imagini pe rând pe ecrane mici */
+    height: 120px; /* Ajustează înălțimea */
+  }
+  .video-item {
+    width: calc(100% - 10px); /* Un video pe rând pe ecrane mici */
+    height: 180px; /* Ajustează înălțimea */
+  }
+
+  .form-container {
+    margin-bottom: 20px; /* Adaugă spațiu între formulare dacă sunt stivuite */
+  }
+}
+
+@media (max-width: 576px) {
+  /* Se aplică pentru ecrane foarte mici (mobile) */
+  .gallery-item {
+    width: calc(100% - 10px); /* O imagine pe rând pe ecrane foarte mici */
+    height: 150px; /* Ajustează înălțimea */
+  }
+}
+/* Stiluri pentru overlay-ul lightbox */
+.lightbox-overlay {
+  /* Poziție fixă pe tot ecranul, acoperind tot viewport-ul */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  /* Fundal negru semi-transparent (80% opacitate) */
+  background-color: rgba(0, 0, 0, 0.8);
+  /* Asigură-te că este deasupra altor elemente de pe pagină */
+  z-index: 1000;
+  /* Folosește flexbox pentru a centra conținutul (imaginea) */
+  display: flex;
+  justify-content: center; /* Centrează orizontal */
+  align-items: center; /* Centrează vertical */
+  /* Permite scroll dacă imaginea mărită depășește dimensiunea ecranului */
+  overflow: auto;
+  /* Cursor de tip pointer pentru a indica faptul că se poate da click pentru a închide */
+  cursor: pointer;
+}
+
+/* Stiluri pentru containerul imaginii în lightbox */
+/* Acest container ajută la centrarea și limitarea dimensiunii imaginii */
+.lightbox-container {
+  /* Poziție fixă, dar cu un z-index mai mare decât overlay-ul */
+  position: fixed;
+  /* Centrează elementul pe ecran folosind transform */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  /* Setează dimensiunea maximă a containerului (ajustează după nevoie) */
+  max-width: 90%;
+  max-height: 90%;
+  /* Plasează containerul deasupra overlay-ului */
+  z-index: 1001;
+  /* Adaugă o umbră pentru a evidenția imaginea */
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+  /* Ascunde orice parte a imaginii care depășește aceste dimensiuni maxime */
+  overflow: hidden;
+  /* Folosește flexbox și aici pentru a asigura că imaginea din interior este centrată */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* Cursor implicit (sau pointer, depinde cum vrei să indici închiderea) */
+  cursor: pointer; /* Poți pune pointer dacă vrei să închidă și la click pe imagine */
+}
+
+/* Stiluri pentru imaginea mărită din interiorul lightbox-container */
+.lightbox-container img {
+  /* Asigură-te că imaginea se comportă ca un bloc pentru a evita spații nedorite dedesubt */
+  display: block;
+  /* Limitează dimensiunea imaginii să nu depășească containerul */
+  max-width: 100%;
+  max-height: 100%;
+  /* Asigură-te că imaginea se redimensionează corect, menținând aspect ratio-ul, fără a fi tăiată */
+  object-fit: contain;
+  /* Asigură-te că imaginea nu are margini interne sau padding */
+  padding: 0;
+  margin: 0;
+}
+
+/* Opțional: stil pentru cursorul pe imaginile din galerie înainte de a da click */
+/* Acest lucru vizual indică faptul că imaginile sunt interactive */
+.gallery-item img {
+  cursor: pointer;
+  /* Adaugă o tranziție fină la scalare sau alte transformări dacă le folosești */
+  transition: transform 0.2s ease-in-out;
+}
+
+/* Opțional: un mic efect vizual la hover peste imaginile din galerie */
+.gallery-item img:hover {
+  transform: scale(1.03); /* Mărește ușor imaginea la hover */
+}
